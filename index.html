@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #kontener {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-size: 16px;
+            overflow: hidden;
+        }
+        .wyroznione {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="kontener">Szymon Wziątek</div>
+
+    <p class="wyroznione">Radom</p>
+
+    <input type="text" id="artykul">
+    <div id="liczba"></div>
+
+    <script>
+        const kontener = document.getElementById('kontener');
+        const p = document.querySelector('.wyroznione');
+        const artykul = document.getElementById('artykul');
+        const liczbaDiv = document.getElementById('liczba');
+
+        kontener.addEventListener('click', () => {
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            kontener.style.backgroundColor = randomColor;
+        });
+
+        kontener.addEventListener('mouseenter', () => {
+            kontener.style.fontSize = '32px';
+        });
+
+        kontener.addEventListener('mouseleave', () => {
+            kontener.style.fontSize = '16px';
+        });
+
+        p.addEventListener('dblclick', () => {
+            p.textContent = 'Radom (powiat Radomski)';
+        });
+
+        p.addEventListener('mouseenter', () => {
+            console.log(p.textContent);
+        });
+
+        artykul.addEventListener('keydown', (e) => {
+            artykul.size = (artykul.value.length + 2);
+            
+            if (e.key >= '0' && e.key <= '9') {
+                liczbaDiv.textContent += e.key;
+            }
+        });
+    </script>
+
+</body>
+</html>
